@@ -40,7 +40,7 @@ async function ImageWatermark() {
         // 过滤获取对应的图片
         let staticImgFileMatch;
         if (options.directory.length === 1) {
-            staticImgFileMatch = `${options.directory.join(',')}/**/*.{${staticTargetFile.join(',')}}`;
+            staticImgFileMatch = `${options.directory.join(',')}**/*.{${staticTargetFile.join(',')}}`;
         } else {
             staticImgFileMatch = `{${options.directory.join(',')}}/**/*.{${staticTargetFile.join(',')}}`;
         }
@@ -49,7 +49,7 @@ async function ImageWatermark() {
                 nocase: true,
                 matchBase: true
             });
-        });
+        }); 
         // 过滤获取对应的图片
         let dynamicImgFileMatch;
         if (options.directory.length === 1) {
@@ -65,7 +65,7 @@ async function ImageWatermark() {
         });
         // 无论是图片还是文字都全部转为图片再转为buffer，水印图片的buffer
         if (options.imageEnable) {
-            watermarkBuffer = await utils.GetWatermarkImageBuffer(allImgFiles, options.watermarkImage, route);
+            watermarkBuffer = await utils.GetWatermarkImageBuffer(null, options.watermarkImage, route);
         } else {
             const svgBuffer = utils.text2svg(options);
             watermarkBuffer = await svg2png(svgBuffer);

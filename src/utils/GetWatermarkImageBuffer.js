@@ -8,9 +8,9 @@
  * @returns {Buffer}
  */
 async function GetWatermarkImageBuffer(images, watermarkImage, route) {
-    if (images.indexOf(watermarkImage) < 0) {
-        throw 'watermarkImage does not exist in the source directory';
-    }
+    // if (images.indexOf(watermarkImage) < 0) {
+    //     throw 'watermarkImage does not exist in the source directory';
+    // }
     const stream = route.get(watermarkImage);
     var arr = [];
     stream.on('data', chunk => arr.push(chunk));
